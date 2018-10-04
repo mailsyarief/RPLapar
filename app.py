@@ -50,7 +50,7 @@ def carimhs(input):
     nrp = data['data_angkatan'][0]['nrp']
     nama = data['data_angkatan'][0]['nama']
     kos = data['data_angkatan'][0]['kosan']
-    print(nama + '\n' + nrp + '\n' + kos)
+    return nama + '\n' + nrp + '\n' + kos
 
 
 # Post Request
@@ -71,7 +71,7 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(carimhs(text)))
+    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=carimhs(text)))
     #line_bot_api.reply_message(event.reply_token,TextSendMessage(text="masuk"))
     
 import os
