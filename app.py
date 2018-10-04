@@ -43,8 +43,7 @@ notes = {}
 
 #REQUEST DATA MHS
 def carimhs(input):
-   URLmhs = "https://www.pricelist.padmapratama.com/api/mhs.php?nrp=" + input
-
+    URLmhs = "https://www.pricelist.padmapratama.com/api/mhs.php?nrp=" + input
     irham = requests.get(URLmhs)
     data = irham.json()
     err = "data tidak ditemukan"
@@ -57,7 +56,7 @@ def carimhs(input):
 
         return nama + '\n' + nrp + '\n' + kos
     elif(flag == "0"):
-        return err
+        return err    
 
 # Post Request
 @app.route("/callback", methods=['POST'])
