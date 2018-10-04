@@ -41,6 +41,18 @@ handler = WebhookHandler('a13be1528f294201578d36297fc549a6')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
+#REQUEST DATA MHS
+def carimhs(input):
+    URLmhs = "https://www.pricelist.padmapratama.com/api/mhs.php?nrp=" + input
+    irham = requests.get(URLmhs)
+    data = irham.json()
+    
+    nrp = data['data_angkatan'][0]['nrp']
+    nama = data['data_angkatan'][0]['nama']
+    kos = data['data_angkatan'][0]['kosan']
+    print(nama + '\n' + nrp + '\n' + kos)
+
+
 # Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -59,8 +71,8 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    if text=="adit":
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat adit'))
+    if text!="":
+        line_bot_api.reply_message(event.reply_token,TextSendMessage(text=carimhs(text)))
     if text=="mail":
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text='Kamu jahat mail'))
     if text=="djohan":
