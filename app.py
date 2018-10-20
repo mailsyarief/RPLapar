@@ -91,7 +91,7 @@ def handle_message(event):
             line_bot_api.push_message('<to>', TextSendMessage(text=lirik))
 
     if(text=="bb"):
-        line_bot_api.push_message('<to>', TextSendMessage(text="test"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text="mashok"))
         
     
 import os
