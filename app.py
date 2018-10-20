@@ -90,7 +90,7 @@ def handle_message(event):
         else:
             line_bot_api.push_message('<to>', TextSendMessage(text=lirik))
 
-    if(text=="bb")
+    if(text=="bb"):
         line_bot_api.push_message('<to>', TextSendMessage(text="test"))
         
     
