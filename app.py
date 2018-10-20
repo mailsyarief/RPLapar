@@ -34,6 +34,8 @@ from linebot.models import (
 
 app = Flask(__name__)
 
+
+
 # Channel Access Token
 line_bot_api = LineBotApi('nCheFomZPKA81EfMCsgkGDaLIWlGlRdX/i9N4JAa2Vvetw4iB0iKyhX9EushTlct8Xm14AjoAhxifXP1THdjBLoIxT6bruyTKY10+M2Ea5iX0p9zraG/0kFvirKsv4vFV7SyYR7IAuEJvSyzvQDwMAdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
@@ -41,25 +43,10 @@ handler = WebhookHandler('a13be1528f294201578d36297fc549a6')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
-#REQUEST DATA MHS
-def carimhs(input):
-    URLmhs = 
-"https://www.aditmasih.tk/api_yemima/show.php?nrp=" + 
-input
-    irham = requests.get(URLmhs)
-    data = irham.json()
-    err = "data tidak ditemukan"
-    
-    flag = data['flag']
-    if(flag == "1"):
-        nrp = data['data_admin'][0]['nrp']
-        nama = data['data_admin'][0]['nama']
-        kos = data['data_admin'][0]['alamat']
-
-        return nama + '\n' + nrp + '\n' + kos
-    elif(flag == "0"):
-        return err    
-
+def loop()
+    while(3--):
+        line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
+        
 # Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -78,8 +65,8 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(text=carimhs(text)))
-    #line_bot_api.reply_message(event.reply_token,TextSendMessage(text="masuk"))
+    loop()
+    
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
