@@ -76,19 +76,19 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    
-    lirik = carimhs("maroon 5","sugar")
-    
-    strs[1] = lirik[:1000]
-    strs[0] = lirik[1001:]
-    i=len(lirik)/1000
+    if(text=="aa"):
+        lirik = carimhs("maroon 5","sugar")
 
-    if len(lirik) > 2000:
-        while i > 0:
-            line_bot_api.push_message(to, TextSendMessage(text=strs[i]))
-            i = i-1
-    else:
-        line_bot_api.push_message(to, TextSendMessage(text=lirik))
+        strs[1] = lirik[:1000]
+        strs[0] = lirik[1001:]
+        i=len(lirik)/1000
+
+        if len(lirik) > 2000:
+            while i > 0:
+                line_bot_api.push_message(to, TextSendMessage(text=strs[i]))
+                i = i-1
+        else:
+            line_bot_api.push_message(to, TextSendMessage(text=lirik))
     
 import os
 if __name__ == "__main__":
