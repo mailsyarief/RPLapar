@@ -77,7 +77,7 @@ def handle_message(event):
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
     if(text=="aa"):
-        lirik = carimhs("maroon 5","sugar")
+        lirik = carimhs("maroon 5","daylight")
 
         strs[1] = lirik[:1000]
         strs[0] = lirik[1001:]
