@@ -34,7 +34,21 @@ from linebot.models import (
 
 app = Flask(__name__)
 
+def carimhs(artist, judul):
+    URLmhs = "https://orion.apiseeds.com/api/music/lyric/" + artist + "/" + judul + "?apikey=v3mwDfvdEaG64MTSHgm2Rtw4l00bfwLFhcWlymLV2bul7qQaASGSFeHAV85TjyYd"
 
+    irham = requests.get(URLmhs)
+    data = irham.json()
+    
+    if 'error' not in data:
+        nrp = data['result']['track']['name']
+        lirik = data['result']['track']['text']
+        lens = len(lirik)
+        return lirik
+
+    if 'error' in data:
+        err = data['error'];
+        # print(err)
 
 # Channel Access Token
 line_bot_api = LineBotApi('nCheFomZPKA81EfMCsgkGDaLIWlGlRdX/i9N4JAa2Vvetw4iB0iKyhX9EushTlct8Xm14AjoAhxifXP1THdjBLoIxT6bruyTKY10+M2Ea5iX0p9zraG/0kFvirKsv4vFV7SyYR7IAuEJvSyzvQDwMAdB04t89/1O/w1cDnyilFU=')
@@ -43,11 +57,6 @@ handler = WebhookHandler('a13be1528f294201578d36297fc549a6')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
-def loop():
-    i=3
-    while(i):
-        line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
-        i=i-1
         
 # Post Request
 @app.route("/callback", methods=['POST'])
@@ -67,7 +76,19 @@ def handle_message(event):
     sender = event.source.user_id #get usesenderr_id
     gid = event.source.sender_id #get group_id
     profile = line_bot_api.get_profile(sender)
-    loop()
+    
+    lirik = carimhs("maroon 5","sugar")
+    
+    strs[1] = lirik[:1000]
+    strs[0] = lirik[1001:]
+    i=len(lirik)/1000
+
+    if len(lirik) > 2000:
+        while i > 0:
+            line_bot_api.push_message(to, TextSendMessage(text=strs[i]))
+            i = i-1
+    else:
+        line_bot_api.push_message(to, TextSendMessage(text=lirik))
     
 import os
 if __name__ == "__main__":
