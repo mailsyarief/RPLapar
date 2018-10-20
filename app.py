@@ -89,7 +89,7 @@ def handle_message(event):
                     line_bot_api.push_message(event.source.user_id, TextSendMessage(text=strs[i]))
                 i = i-1
         else:
-            line_bot_api.push_message(event.reply_token, TextSendMessage(text=lirik))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=lirik))
 
     if(text=="bb"):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text="mashok"))
