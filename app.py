@@ -85,10 +85,10 @@ def handle_message(event):
 
         if len(lirik) > 2000:
             while i > 0:
-                line_bot_api.push_message(event.source.user_id, TextSendMessage(text=strs[i]))
+                line_bot_api.push_message(profile.user_id, TextSendMessage(text=strs[i]))
                 i = i-1
         else:
-            line_bot_api.push_message(event.source.user_id, TextSendMessage(text=lirik))
+            line_bot_api.push_message(profile.user_id, TextSendMessage(text=lirik))
     
 import os
 if __name__ == "__main__":
