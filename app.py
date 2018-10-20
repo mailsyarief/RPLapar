@@ -43,7 +43,7 @@ handler = WebhookHandler('a13be1528f294201578d36297fc549a6')
 #===========[ NOTE SAVER ]=======================
 notes = {}
 
-def loop()
+def loop():
     i=3
     while(i):
         line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
